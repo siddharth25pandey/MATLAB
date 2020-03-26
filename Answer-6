@@ -1,0 +1,142 @@
+clc;clear all;close all;
+T=3;
+N=5;
+M=10;
+x1=zeros(size(N*T));
+x1=[];
+w=2*pi/3;
+t=-5:0.1:5;
+tn=0:0.1:N*T;
+tv=-1.5:3/100:1.5;
+x1t=f(tv).*(u(tv+1)-u(tv-1));
+
+
+kv=-M:M;
+for i=1:length(N*T)
+    x1=[x1,x1t];
+end
+
+
+for i=1:length(kv)
+   k=kv(i);
+    basis=exp(-1i*w*k*tv);
+    a(i)=trapz(tv,x1t.*basis)/T;
+end
+
+xn=zeros(1,length(t));
+for mx=1:M
+
+    kv=-mx:mx;
+
+    xn=zeros(size(tv));
+
+for j=1:length(kv)
+    p=kv(j)
+    fun=exp(1i*w*p*tv);
+    xn=xn+a(j)*fun;
+end
+    plot(tv,x1);
+    hold on;
+     plot(tv,xn,'r','LineWidth',2);
+    xlabel('Time');
+    ylabel('Signal');
+    hold off;
+    pause(0.5);
+    drawnow;
+    error(mx)=mean((abs(xn)).^2);
+end
+%figure(3);
+
+%stem(1:M,(xn));
+
+%figure;
+
+   subplot(221);
+    plot(tv,x1t);
+    hold on;
+    plot(tv,xn);
+    title('X(t)');
+    subplot(224);
+    stem(kv,imag(a));
+    title('Imaginary Components of Fourier Series (IMG(a))');
+    subplot(223);
+    stem(kv,real(a));
+    title('Real part of Fourier Series (REAL(a))');
+    subplot(222)
+    stem(kv,a);
+    title('Coefficient of Fourier Series');
+    
+    
+    
+function x = f(t)
+x = zeros(size(t));
+x(t<0)=1+(t(t<0)/2);
+x(t>=0)=1-(t(t>=0)/2);
+end
+function x = u(t)
+x = zeros(size(t));
+x(t>=0)=1;
+end
+
+------------------------------------------------
+clc;clear all;close all;
+T=3;
+N=5;
+M=10;
+w=2*pi/3;
+x2=zeros(size(N*T));
+x2=[];
+t=-5:0.1:5;
+tv=-1.5:3/100:1.5;
+x2t=tv.^2.*(u(tv+1)-u(tv-1));
+kv=-M:M;
+for i=1:length(N*T)
+    x2=[x2,x2t];
+end
+
+
+for i=1:length(kv)
+   k=kv(i);
+    basis=exp(-1i*w*k*tv);
+    a(i)=trapz(tv,x2t.*basis)/T;
+end
+xn=zeros(1,length(t));
+for mx=1:M
+
+    kv=-mx:mx;
+
+    xn=zeros(size(tv));
+
+for j=1:length(kv)
+    p=kv(j)
+    fun=exp(1i*w*p*tv);
+    xn=xn+a(j)*fun;
+end
+    plot(tv,x2);
+    hold on;
+     plot(tv,xn,'r','LineWidth',2);
+    xlabel('Time');
+    ylabel('Signal');
+    hold off;
+    pause(0.5);
+    drawnow;
+     error(mx)=mean((abs(xn)).^2);
+end
+    subplot(221);
+    plot(tv,x2t);
+    title('X(t)');
+    hold on;
+    plot(tv,xn);
+    subplot(224);
+    stem(kv,imag(a));
+    title('Imaginary Components of Fourier Series (IMG(a))');
+    subplot(223);
+    stem(kv,real(a));
+    title('Real part of Fourier Series (REAL(a))');
+    subplot(222)
+    stem(kv,a);
+    title('Coefficient of Fourier Series');
+ function x = u(t)
+x = zeros(size(t));
+x(t>=0)=1;
+end
