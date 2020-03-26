@@ -1,0 +1,11 @@
+Consider the signal
+
+1 + t − 1 < t < 0
+x(t) = 1 − t 0 < t < 1
+0 otherwise
+
+Answer/do the following
+• Plot x(t)
+• Define y(t) as a periodic signal equal to x(t) in the fundamental period
+T = 2.
+Plot y(t). Assume the number of pulses to be plotted.
