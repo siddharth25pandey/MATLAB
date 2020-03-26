@@ -1,0 +1,16 @@
+Take a picture of yourself (passport size is enough) and answer/do the
+following
+Save the image as a jpeg file and include in the report
+What is the number of independent variables
+What is the number of components
+Display the individual components of the image
+determine the minimum, mean and maximum of each component
+Determine the size of the image
+• Record your voice for a duration of 5 seconds and answer/do the following
+Read the signal in matlab and plot all the channels of the signal on
+separate figures
+How many channels are present in the signal
+Is this signal digital or analog?
+What is number of the values in the sequence
+What is the energy of the signal in each channel
+What is the sample rate?
