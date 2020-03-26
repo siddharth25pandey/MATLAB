@@ -1,0 +1,210 @@
+
+n=0:10;
+x1=zeros(size(n));
+x2=zeros(size(n));
+h=x1;
+y1=h;
+x1(n==0)=-2;
+x1(n==1)=2;
+x1(n==2)=3;
+x1(n==3)=1;
+x1(n==4)=12;
+x1(n==5)=0;
+x1(n==6)=0;
+x1(n==7)=0;
+x1(n==8)=0;
+
+x2(n==0)=1;
+x2(n==1)=-1;
+x2(n==2)=4;
+x2(n==3)=-2;
+x2(n==4)=0;
+x2(n==5)=0;
+x2(n==6)=0;
+x2(n==7)=0;
+x2(n==8)=0;
+
+h(n==0)=3;
+h(n==1)=-2;
+h(n==2)=-5;
+h(n==3)=1;
+h(n==4)=-4;
+h(n==5)=0;
+h(n==6)=0;
+h(n==7)=0;
+
+x=x1+x2;
+
+y1=zeros(size(n));
+
+for l=1:10
+    y1(l)=0;
+    for k=1:l
+        y1(l)=y1(l)+h(k).*x(l-k+1);
+    end
+end
+ya=zeros(size(n));
+
+for l=1:10
+    ya(l)=0;
+    for k=1:l
+        ya(l)=ya(l)+h(k).*x1(l-k+1);
+    end
+end
+yb=zeros(size(n));
+
+for l=1:10
+    yb(l)=0;
+    for k=1:l
+        yb(l)=yb(l)+h(k).*x2(l-k+1);
+    end
+end
+y2=ya+yb;
+
+
+
+z=conv(x,h);
+subplot(231);
+stem(n,x1);
+title('X1(n)');
+subplot(232);
+stem(n,x2);
+title('X2(n)');
+subplot(233);
+stem(n,h);
+title('H(n)');
+subplot(234);
+stem(n,y1);
+title('Y1(n)');
+subplot(235)
+stem(n,y2);
+title('Y2(n)');
+subplot(236)
+stem(z);
+title('Conv of X(n) and H(n)');
+--------------------------------------
+
+N=-4:1:4;
+x1=X(N,1,0);
+h1=H(N,-1,0);
+x2=X(N,-1,3);
+h2=H(N,1,0);
+l=size(x1')+size(h1')-1;
+he=zeros(l);
+xe=zeros(l);
+he(1:size(h1'))=h1
+xe(1:size(x1'))=x1
+y1=zeros(l);
+y2=zeros(l);
+for n=1:1:l
+    y1(n)=0;
+    for k=1:1:n
+        y1(n)=y1(n)+he(k).*xe(n-k+1);
+    end
+end
+y1=y1'
+xe(12)
+he(1:size(h2'))=h2;
+xe(1:size(x2'))=x2;
+for n=1:1:l
+    y2(n)=0;
+    for k=1:1:n
+        y2(n)=y2(n)+he(k).*xe(n-k+1);
+    end
+end
+y2=y2'
+N1=-8:1:l-1-8;
+subplot(2,4,1);
+stem(N,x1);
+title('X[n]');
+subplot(2,4,2);
+stem(N,h1);
+title('H[-n]');
+subplot(2,4,3);
+stem(N1,y1);
+title('Y1[n]');
+co1=conv(x1,h1);
+subplot(2,4,4);
+stem(N1,co1);
+title('conv(X[n],H[-n])');
+subplot(2,4,5);
+stem(N,x2);
+title('X[3-n]');
+subplot(2,4,6);
+stem(N,h2);
+title('H[n]');
+subplot(2,4,7);
+stem(N1,y2);
+title('Y2[n]');
+co2=conv(x2,h2);
+subplot(2,4,8);
+stem(N1,co2);
+title('conv(X[3-n],H[n])');
+
+function a=X(n,c,d)
+a=zeros(size(n));
+a(n==d)=2;
+a(n==c+d)=-1;
+a(n==(2*c)+d)=4;
+a(n==(3*c)+d)=-7;
+a(n==(4*c)+d)=5;
+end
+function a=H(n,c,d)
+a=zeros(size(n));
+a(n==d)=2;
+a(n==c+d)=4;
+a(n==(2*c)+d)=2;
+a(n==(3*c)+d)=4;
+a(n==(4*c)+d)=1;
+end
+
+--------------------------------------
+
+N=-2:1:2;
+x=X(N);
+h=H(N);
+l=size(x')+size(h')-1;
+he=zeros(l);
+xe=zeros(l);
+he(1:size(h'))=h;
+xe(1:size(x'))=x;
+y=zeros(l);
+for n=1:1:l
+    y(n)=0;
+    for k=1:1:n
+        y(n)=y(n)+he(k).*xe(n-k+1);
+    end
+end
+
+y=y'
+N1=-4:1:-4+l-1;
+subplot(1,4,1);
+stem(N,x);
+title('X[n]');
+subplot(1,4,2);
+stem(N,h);
+title('H[n]');
+subplot(1,4,3);
+stem(N1,y);
+title('Y[n]');
+co=conv(x,h);
+subplot(1,4,4);
+stem(N1,co);
+title('conv(X[n],H[n])');
+
+function a=X(n)
+a=zeros(size(n));
+a(n==-2)=3;
+a(n==-1)=3;
+a(n==0)=1;
+a(n==1)=2;
+a(n==2)=3;
+end
+function a=H(n)
+a=zeros(size(n));
+a(n==-2)=1;
+a(n==-1)=2;
+a(n==0)=3;
+a(n==1)=2;
+a(n==2)=1;
+end
