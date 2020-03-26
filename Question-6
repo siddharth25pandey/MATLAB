@@ -1,0 +1,23 @@
+1. In the fundamental interval the signal x1(t) is defined as
+
+x1(t) = 
+1 −
+t
+2
+
+(u(t + 1) − u(t − 1))
+2. In the fundamental interval the signal x2(t) is defined as
+
+x2(t) = t
+2
+(u(t + 1) − u(t − 1))
+
+• For each of the periodic signals given above assume a time period T = 3
+and compute the Fourier coefficients. Next, plot the following: The Fourier
+coefficients; both the real and imaginary components vs the theoretical
+values.
+• Next, for each of the periodic signals mentioned above (with the period T
+= 3), reconstruct the original signal from the Fourier coefficients.
+– Plot the original and reconstructed signal on the same figure.
+– Demonstrate the convergence of the reconstructed signal with respect
+to the original signal
