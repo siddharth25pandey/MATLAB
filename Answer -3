@@ -1,0 +1,204 @@
+t=-10:0.01:10;
+a1 = t-1;
+a2 = t+1;
+a3= 2-t;
+a4= 1-t;
+a5=2*t-4;
+a6=t;
+x1 = fx(a1);
+y1 = fy(a2);
+z1 = x1.*y1;
+x2= fx(a3);
+y2=fy(a4);
+z2=x2.*y2;
+x3=fx(a5);
+y3=fy(a6);
+z3=x3.*y3;
+%figure;
+%plot(t,a);
+%figure;
+%plot(t,b);
+%figure;
+subplot(221);
+plot(t,z1);
+subplot(222);
+%figure;
+
+plot(t,z2);
+%figure
+subplot(223);
+plot(t,z3);
+function x = fx(t)
+x = zeros(size(t));
+x(t<1)=0;
+x(t>=1 & t<2)=t(t>=1 & t<2)-1;
+x(t>=2 & t<4)=2-(t(t>=2 & t<4)/2);
+x(t>=4 & t<5)=-1;
+x(t>=5)=0;
+end
+function y = fy(t)
+y = zeros(size(t));
+y(t<1)=0;
+y(t>=1 & t<2)=1;
+y(t>=2 & t<4)=-2;
+y(t>=4 & t<5)=t(t>=4 & t<5)-4;
+y(t>=5)=0;
+end
+
+
+-----------------------------------------------------
+t=-10:0.01:10;
+a1 = t+1;
+a2 = t-1;
+a3= 2+t;
+a4= -1-t;
+a5=-2*t-4;
+a6=-t;
+x1 = fx(a1);
+y1 = fy(a2);
+z1 = x1.*y1;
+x2= fx(a3);
+y2=fy(a4);
+z2=x2.*y2;
+x3=fx(a5);
+y3=fy(a6);
+z3=x3.*y3;
+%figure;
+%plot(t,a);
+%figure;
+%plot(t,b);
+%figure;
+subplot(221);
+plot(t,z1);
+xlabel('t');
+ylabel('x(t+1)y(t-1)')
+title("(a)");
+subplot(222);
+%figure;
+
+plot(t,z2);
+xlabel('t');
+ylabel('x(2+t)y(-1-t)');
+title("(b)");
+%figure
+subplot(223);
+plot(t,z3);
+xlabel('t');
+ylabel('x(-2t-4)')
+title("(c)");
+function x = fx(t)
+x = zeros(size(t));
+x(t<1)=0;
+x(t>=1 & t<2)=1-t(t>=1 & t<2);
+x(t>=2 & t<3)=t(t>=2 & t<3)-3;
+x(t>=3 & t<4)=1;
+x(t>=4)=0;
+end
+function y = fy(t)
+y = zeros(size(t));
+y(t<1)=0;
+y(t>=1 & t<2)=1;
+y(t>=2 & t<3)=-2;
+y(t>=3 & t<4)=t(t>=3 & t<4)-5;
+y(t>=5)=0;
+end
+------------------------------------------------------------
+n=-10:10;
+a=n+1;
+b=n-2;
+c=3-n;
+d=3-2*n;
+e=4*n+5
+x1=fx(a);
+x2=fx(b);
+x3=fx(c);
+x4=fx(d);
+x5=fx(e);
+subplot(331);
+stem(n,x1);
+xlabel('n');
+ylabel('x[n+1]')
+title("(a)");
+subplot(332);
+stem(n,x2);
+xlabel('n');
+ylabel('x[n-2]')
+title("(b)");
+subplot(333);
+stem(n,x3);
+xlabel('n');
+ylabel('x[3-n]')
+title("(c)");
+subplot(334);
+stem(n,x4);
+xlabel('n');
+ylabel('x[3-2n]')
+title("(d)");
+subplot(335);
+stem(n,x5);
+xlabel('n');
+ylabel('x[4n+5]')
+title("(e)");
+
+
+
+
+
+function x=fx(n)
+x=zeros(size(n));
+x(n==0)=2;
+x(n==1)=-2;
+x(n==2)=3;
+x(n==3)=4;
+x(n==4)=-4;
+end
+-----------------------------------------------------------
+n=-10:1:10;
+a=n-1;
+b=n+2;
+c=-3-n;
+d=-3+2*n;
+e=4*n-5
+x1=fx(a);
+x2=fx(b);
+x3=fx(c);
+x4=fx(d);
+x5=fx(e);
+subplot(231);
+stem(n,x1);
+xlabel('n');
+ylabel('x[n-1]')
+title("(a)");
+subplot(232);
+stem(n,x2);
+xlabel('n');
+ylabel('x[n+2]')
+title("(b)");
+subplot(233);
+stem(n,x3);
+xlabel('n');
+ylabel('x[-3-n]')
+title("(c)");
+subplot(234);
+stem(n,x4);
+xlabel('n');
+ylabel('x[-3+2n]')
+title("(d)");
+subplot(235);
+stem(n,x5);
+xlabel('n');
+ylabel('x[4n-5]')
+title("(e)");
+
+
+
+
+
+function x=fx(n)
+x=zeros(size(n));
+x(n==0)=-1;
+x(n==1)=2;
+x(n==2)=-3;
+x(n==3)=-4;
+x(n==4)=5;
+end
