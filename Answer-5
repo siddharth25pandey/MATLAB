@@ -1,0 +1,80 @@
+t=-6:0.01:7;
+h=f1(t);
+x=exp(-2*t).*(u(t)-u(t-4));
+T=-10:0.01:20;
+
+xT=zeros(size(T));
+hT=zeros(size(T));
+hT=f1(T);
+xT=exp(-2*T).*(u(T)-u(T-4));
+for i=1:length(t)
+    k=t(i);
+    xT=exp(-2*(k-T)).*(u(k-T)-u(k-T-4));
+    y(i)=trapz(T,xT.*hT);
+end
+b=-12:0.01:14;
+z=conv(x,h);
+subplot(221);
+plot(t,x);
+title('X(t)');
+subplot(222);
+plot(t,h);
+title('H(t)');
+subplot(223);
+plot(t,y);
+title('Y(t)');
+subplot(224);
+plot(b,z/100);
+title('Conv Y(t)');
+
+function x = f1(t)
+x = zeros(size(t));
+x(t<1)=0;
+x(t>=0 & t<1)=1-t(t>=0 & t<1);
+x(t>=1 & t<2)=t(t>=1 & t<2)-1;
+x(t>=2)=0;
+end
+function x = u(t)
+x = zeros(size(t));
+x(t>=0)=1;
+end
+
+
+-------------------------------------------------------------------------------
+t=0.1:0.01:40;
+x=log(t).*(u(t)-u(t-3));
+h=exp(-1*t).*(u(t)-u(t-4));
+T=0.1:0.01:40;
+xT=zeros(size(T));
+hT=zeros(size(T));
+xT=log(T).*(u(T)-u(T-3));
+hT=exp(-1*T).*(u(T)-u(T-4));
+for i=1:length(t)
+    k=t(i);
+    %xT=log((k-T)).*(u(k-T)-u(k-T-3));
+    hT=exp(-1*(k-T)).*(u((k-T))-u(k-T-4));
+    y(i)=trapz(T,xT.*hT);
+end
+z=zeros(size(x)+size(h));
+l=size(x)+size(h);
+z=conv(x,h);
+subplot(221);
+plot(t,x);
+title('X(t)');
+subplot(222);
+plot(t,h);
+title('H(t)');
+subplot(223);
+plot(t,y);
+title('Y(t)');
+subplot(224);
+%plot(l,z);
+plot(t,y);
+title('Conv Y(t)');
+
+
+
+function x = u(t)
+x = zeros(size(t));
+x(t>=0)=1;
+end
