@@ -1,0 +1,53 @@
+Write a matlab code for linear convolution of two signals. Then
+1. Generate the causal signals
+x1[n] = {−2
+↑
+, 2, 3, 1, 12}
+
+x2[n] = {1
+↑
+, −1, 4, −2}
+h[n] = {3
+↑
+, − 2, − 5, 1, − 4}
+Now, determine the output of the given systems
+y1[n] = (x1[n] + x2[n]) ∗ h[n]
+y2[n] = x1[n] ∗ h[n] + x2[n] ∗ h[n]
+
+(a) Perform the calculations using your matlab code and verify the re-
+sults using the inbuilt function conv and on-paper calculations.
+
+(b) Verify if the outputs y1[n] and y2[n] are identical or not.
+(c) Using the stem function, plot the signals x1[n], x2[n], h[n], y1[n] and
+y2[n].
+2. Next, generate the translated signals
+x[n] = {3, 3, 1
+↑
+, 2, 3, }
+h[n] = {1, 2, 3
+↑
+, 2, 1}
+Now, determine the output of the given system
+y[n] = x[n] ∗ h[n]
+1
+
+(a) Perform the calculations using your matlab code and verify the re-
+sults using the inbuilt function conv and on-paper calculations.
+
+(b) Using the stem function, plot the signals x[n], h[n], and y[n].
+3. Next generate the signals
+x[n] = {2
+↑
+, − 1, 4, − 7, 5}
+
+h[n] = {2
+↑
+, 4, 2, 4, 1}
+Now, compute the ouput of the given systems
+y1[n] = x[n] ∗ h[−n]
+y2[n] = x[3 − n] ∗ h[n]
+
+(a) Perform the calculations using your matlab code and verify the re-
+sults using the inbuilt function conv and on-paper calculations.
+
+(b) Using the stem function, plot the signals x[n], h[n], y1[n] and y2[n].
